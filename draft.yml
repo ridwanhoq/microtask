@@ -1,0 +1,61 @@
+# models:
+#   Post:
+#     title: string
+#     description: longtext
+#     user_id: id
+#     publised: boolean
+#     published_at: nullable timestamp
+
+# Controllers:
+#   Post:
+#     index:
+#       query: all
+#       render: post.index with:posts
+#     create:
+#       render: post.create
+#     store:
+#       validate: title, description
+#       save: post
+#       redirect: post.index  
+#     show:
+#       render: post.show with:post
+
+models:
+  Category:
+    title: string
+    description: text
+
+    
+  Task:
+    title: string
+    description: text
+    minutes_to_finish: integer
+    category_id: integer
+    
+Controllers:
+  Category:
+    index:
+      query: all
+      render: category.index 
+    create:
+      render: category.create
+    store:
+      validate: title, description
+      save: category
+      flash: category.title
+      redirect: category.index
+    show:
+      render: category.show
+  Task:
+    index:
+      query: all with:category
+      render: task.index
+    create:
+      render: task.create
+    store:
+      validate: title, description, minutes_to_finish
+      save: task
+      flash: task.title
+      redirect: task.index
+    show:
+      render: task.show
