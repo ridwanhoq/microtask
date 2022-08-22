@@ -15,9 +15,10 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::all();
+        
+        $categories = Category::latest()->get();
+        return view('categories.index',compact('categories'));
 
-        return view('categories.index');
     }
 
     /**
@@ -35,7 +36,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        $categories = Categories::create($request->validated());
+        $categories = Category::create($request->validated());
 
         $request->session()->flash('categories.title', $categories->title);
 
