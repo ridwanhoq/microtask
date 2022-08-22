@@ -21,41 +21,49 @@
 #       render: post.show with:post
 
 models:
-  Category:
-    title: string
-    description: text
+  # Category:
+  #   title: string
+  #   description: text
 
     
-  Task:
-    title: string
-    description: text
-    minutes_to_finish: integer
-    category_id: integer
+  # Task:
+  #   title: string
+  #   description: text
+  #   minutes_to_finish: integer
+  #   category_id: integer
     
+    Deposit:
+      user_id: integer id foreign:users
+      amount: decimal
+      deposit_request_date: date
+      deposit_processed_by: integer
+      deposit_processed_date: date
+
+
 Controllers:
-  Category:
-    index:
-      query: all
-      render: category.index 
-    create:
-      render: category.create
-    store:
-      validate: title, description
-      save: category
-      flash: category.title
-      redirect: category.index
-    show:
-      render: category.show
-  Task:
-    index:
-      query: all with:category
-      render: task.index
-    create:
-      render: task.create
-    store:
-      validate: title, description, minutes_to_finish
-      save: task
-      flash: task.title
-      redirect: task.index
-    show:
-      render: task.show
+  # Category:
+  #   index:
+  #     query: all
+  #     render: category.index 
+  #   create:
+  #     render: category.create
+  #   store:
+  #     validate: title, description
+  #     save: category
+  #     flash: category.title
+  #     redirect: category.index
+  #   show:
+  #     render: category.show
+  # Task:
+  #   index:
+  #     query: all with:category
+  #     render: task.index
+  #   create:
+  #     render: task.create
+  #   store:
+  #     validate: title, description, minutes_to_finish
+  #     save: task
+  #     flash: task.title
+  #     redirect: task.index
+  #   show:
+  #     render: task.show
