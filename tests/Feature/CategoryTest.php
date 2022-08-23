@@ -26,21 +26,40 @@ class CategoryTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_read_all_the_categories(){
-        
+    public function a_user_can_read_all_the_categories()
+    {
+
         $category   = Category::factory()->create(['title' => 'fake']);
 
         $response   = $this->get('categories');
 
         $response->assertSee($category->title);
+        $response->assertSee($category->description);
 
+        $response->assertSeeText('All Categories');
     }
 
     /** @test */
-    public function a_user_can_read_single_category(){
+    public function a_user_can_read_single_category()
+    {
 
         $category   = Category::create([
-            'title' => 'fake',
+            'title'         => 'fake title',
+            'description'   => 'fake description'
+        ]);
+
+        $response   = $this->get("categories/{$category->id}");
+
+        $response->assertSee($category->title)
+            ->assertSee($category->description);
+    }
+
+    /** @test */
+    public function a_user_can_insert_single_category()
+    {
+
+        $category   = Category::create([
+            'title'         => 'fake title',
             'description'   => 'fake description'
         ]);
 
@@ -49,11 +68,6 @@ class CategoryTest extends TestCase
         $response->assertSee($category->title)
                 ->assertSee($category->description);
 
-        $url    = $this->get('/');
-
-        $url->assertStatus(200);
 
     }
-
-
 }

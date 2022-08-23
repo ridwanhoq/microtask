@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="page-header">
-                    <h2>All categories</h2>
+                    <h2>All Categories</h2>
                 </div>
                 @foreach($categories as $category)
                 <div class="card">
