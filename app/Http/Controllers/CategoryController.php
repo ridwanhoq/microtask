@@ -52,4 +52,9 @@ class CategoryController extends Controller
     {
         return view('categories.show');
     }
+
+    public function edit(){
+
+    }
+    
 }
